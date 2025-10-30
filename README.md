@@ -1,4 +1,24 @@
 # Simple MODBUS implementation for STM32 HAL & FreeRTOS
+#좀 더 쉽게 쓰기 위해 수정. 
+
+```
+    modbus_data.solenoid_data.plc_aux = 1;
+    modbus_data.solenoid_data.ext_ain = 2;
+    modbus_data.solenoid_data.sola_current = 3;
+    modbus_data.solenoid_data.solb_current = 4;
+    modbus_data.solenoid_data.dip_switch = Get_DIP_Swtch();
+
+
+    /* modbus_data 구조체를 ModBus 레지스터로 동기화 */
+    ModBus_SyncDataToRegisters(&modbus_data);
+
+    /* ModBus 마스터가 쓴 값을 modbus_data로 읽어오기 */
+    ModBus_SyncRegistersToData(&modbus_data);
+
+```
+
+
+# Simple MODBUS implementation for STM32 HAL & FreeRTOS
 
 Why I write my own implementation? 
 - It does not need any timers. 

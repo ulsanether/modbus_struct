@@ -8,6 +8,8 @@ Licensed under LGPL.
 #include "cmsis_os.h"
 #include "modbus.h"
 
+
+
 // If you want directly send to usb-cdc
 // #include "usbd_cdc_if.h"
 
@@ -57,6 +59,10 @@ void ModBusTask(void const * argument)
       }
   }
 }
+
+
+
+
 
 void ModBus_Init(void)
 {
@@ -257,3 +263,37 @@ uint8_t CRC16_IN(void)
     }
   return 1;
 }
+
+
+// ModbusData 구조체를 ModBus 레지스터로 동기화
+void ModBus_SyncDataToRegisters(ModbusData *data)
+{
+  uint16_t *ptr = (uint16_t *)data;
+  uint16_t total_regs = sizeof(ModbusData) / sizeof(uint16_t);
+
+  // ModBusRegisters 크기를 초과하지 않도록 체크
+  if (total_regs > ModBusRegisters) {
+    total_regs = ModBusRegisters;
+  }
+
+  for (uint16_t i = 0; i < total_regs; i++) {
+    mb_reg[i] = ptr[i];
+  }
+}
+
+// ModBus 레지스터를 ModbusData 구조체로 동기화
+void ModBus_SyncRegistersToData(ModbusData *data)
+{
+  uint16_t *ptr = (uint16_t *)data;
+  uint16_t total_regs = sizeof(ModbusData) / sizeof(uint16_t);
+
+  if (total_regs > ModBusRegisters) {
+    total_regs = ModBusRegisters;
+  }
+
+  for (uint16_t i = 0; i < total_regs; i++) {
+    ptr[i] = mb_reg[i];
+  }
+}
+
+
