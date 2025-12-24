@@ -3,7 +3,7 @@
 
 # Simple MODBUS implementation for STM32 HAL & FreeRTOS
 
-#기존의 좀 더 쉽게 쓰기 위해 수정. 
+#기존의 좀 더 쉽게 쓰기 위해 수정. 필요 없는 파일 삭제 
 
 
 ```
