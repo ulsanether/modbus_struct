@@ -2,7 +2,12 @@
 #좀 더 쉽게 쓰기 위해 수정. 
 
 ```
-    modbus_data.solenoid_data.plc_aux = 1;
+
+    2025_12_24일
+	
+    구조체로 만들어서 동기화. 더 이상 수정이 없음.
+	
+	modbus_data.solenoid_data.plc_aux = 1;
     modbus_data.solenoid_data.ext_ain = 2;
     modbus_data.solenoid_data.sola_current = 3;
     modbus_data.solenoid_data.solb_current = 4;
@@ -14,6 +19,8 @@
 
     /* ModBus 마스터가 쓴 값을 modbus_data로 읽어오기 */
     ModBus_SyncRegistersToData(&modbus_data);
+	
+	
 
 ```
 

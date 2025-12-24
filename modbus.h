@@ -24,6 +24,8 @@ extern "C" {
 19200 - 18, 115200 - 2   9600 - 35 값
 */
 
+#define MODBUS_DATA_BASE_ADDR   0    // 0번 레지스터부터 사용
+#define MODBUS_DATA_WORD_COUNT  (sizeof(ModbusData) / 2)
 
 
 #define ModBus35 35
